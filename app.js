@@ -1,4 +1,3 @@
-// map object
 const myMap = {
 	coordinates: [],
 	businesses: [],
@@ -9,19 +8,19 @@ const myMap = {
 	buildMap() {
 		this.map = L.map('map', {
 		center: this.coordinates,
-		zoom: 11,
+		zoom: 15,
 		});
 		// add openstreetmap tiles
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution:
 			'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-		minZoom: '15',
+		minZoom: '11',
 		}).addTo(this.map)
 		// create and add geolocation marker
 		const marker = L.marker(this.coordinates)
 		marker
 		.addTo(this.map)
-		.bindPopup('<p1><b>You are here</b><br></p1>')
+		.bindPopup('<p1><b>Your Location</b><br></p1>')
 		.openPopup()
 	},
 
@@ -52,7 +51,9 @@ async function getFoursquare(business) {
 		method: 'GET',
 		headers: {
 		Accept: 'application/json',
-		Authorization: 'fsq3ATzZbmcGhdeFafr73wZcnJ+LlN6bK+4dh19a7ClS4u8='
+
+		//use personal API key from foursquare
+		Authorization: 'fsq38sxXiyhN6LpTwxVNNMyH3GsCT6eq8In/GC1D+srtzXc='
 		}
 	}
 	let limit = 5
